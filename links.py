@@ -11,7 +11,7 @@ def poop(url):
 
     driver.implicitly_wait(10)
     i = 1
-    while i <= 200:
+    while i <= 250:
         links = driver.find_elements_by_xpath("//a[@data-a-target='preview-card-image-link']")
         driver.execute_script('arguments[0].scrollIntoView(true);', links[len(links)-1])
         print(i)

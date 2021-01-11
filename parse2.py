@@ -118,7 +118,6 @@ def getMp4(arg):
 
 def downloadMp4(video_links):
 
-    shuffle()
     dirpath = os.getcwd()
 
     for link in video_links:
@@ -133,11 +132,11 @@ def downloadMp4(video_links):
 
         if d['slug'][index] not in uplist:
             try:
+                games = (d['game'][index])
                 names = (d['broadcaster'][index])
-                tagstring = tag(names['name'])
+                tagstring = tag(names['name']+ ' ' + games)
                 print(names)
                 urllib.request.urlretrieve(getMp4(fuckly),dirpath+'/Mp4/'+file_name)
-                games = (d['game'][index])
                 titles = (d['title'][index])
 
                 upload(names['name']+': '+titles,'Credits: https://www.twitch.tv/'+names['name']+' #'+ games +' #'+names['name'],tagstring,dirpath+'/Mp4/'+file_name)
@@ -157,4 +156,5 @@ def downloadMp4(video_links):
         os.chdir(dirpath + '/Mp4')
         mp4list = [os.remove(mp4) for mp4 in os.listdir(dirpath+'/Mp4')]
         os.chdir(dirpath)
+
 downloadMp4(trackingIds)
